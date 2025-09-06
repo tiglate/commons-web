@@ -69,6 +69,29 @@
         </plugins>
     </build>
 
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/tiglate/commons-web</url>
+        </repository>
+    </distributionManagement>
+
+    <repositories>
+        <repository>
+            <id>github</id>
+            <name>GitHub Packages</name>
+            <url>https://maven.pkg.github.com/tiglate/commons-web</url>
+        </repository>
+    </repositories>
+
+    <scm>
+        <url>https://github.com/tiglate/commons-web</url>
+        <connection>scm:git:https://github.com/tiglate/commons-web.git</connection>
+        <developerConnection>scm:git:git@github.com:tiglate/commons-web.git</developerConnection>
+        <tag>HEAD</tag>
+    </scm>
+
     <profiles>
         <profile>
             <id>coverage</id>
