@@ -9,7 +9,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.LocaleResolver;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -30,6 +30,7 @@ class GlobalizationUtilsTest {
     void setUp() {
         MockitoAnnotations.openMocks(this);
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        //noinspection InstantiationOfUtilityClass
         new GlobalizationUtils(messageSource, localeResolver);
     }
 
