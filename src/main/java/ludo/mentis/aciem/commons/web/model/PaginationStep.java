@@ -7,6 +7,7 @@ public class PaginationStep {
     private String label;
     private String url;
 
+    @SuppressWarnings("unused")
     public boolean isActive() {
         return active;
     }
@@ -31,6 +32,7 @@ public class PaginationStep {
         this.label = label;
     }
 
+    @SuppressWarnings("unused")
     public String getUrl() {
         return url;
     }

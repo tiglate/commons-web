@@ -23,6 +23,7 @@ public class SortUtils {
 
     private UriBuilder uriComponentsBuilder;
 
+    @SuppressWarnings("unused")
     public SortUtils() {
         this.uriComponentsBuilder = null;
     }
