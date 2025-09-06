@@ -1,5 +1,7 @@
 # 🌐 Commons Web Library
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=tiglate_commons-web&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=tiglate_commons-web)
+
 This library provides boilerplate code for basic Spring MVC web applications, based on projects generated with Bootify ([https://bootify.io/](https://bootify.io/)) or similar structures.  It aims to streamline the development process by offering pre-built components and configurations.
 
 ## 💡 Tips & Tricks
