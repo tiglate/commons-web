@@ -30,8 +30,10 @@ class CustomCollectorsTest {
     void testToSortedMapWithDuplicateKeys() {
         List<String> data = List.of("apple", "apple");
 
+        var stream = data.stream();
+        var collector = CustomCollectors.toLinkedHashMap(s -> s.substring(0, 3), String::length);
         var exception = assertThrows(IllegalStateException.class,
-                () -> data.stream().collect(CustomCollectors.toLinkedHashMap(s -> s.substring(0, 3), String::length)));
+                () -> stream.collect(collector));
 
         assertTrue(exception.getMessage().contains("Duplicate key"));
     }

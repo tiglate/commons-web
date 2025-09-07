@@ -14,7 +14,7 @@ class FlashMessagesTest {
     private RedirectAttributes redirectAttributes;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
