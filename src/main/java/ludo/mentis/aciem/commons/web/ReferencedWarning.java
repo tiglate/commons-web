@@ -31,7 +31,7 @@ public class ReferencedWarning {
      * </p>
      *
      * @return a string representation of the referenced warning, consisting of the key
-     *         followed by the parameters if any are present
+     * followed by the parameters if any are present
      */
     public String toMessage() {
         String message = key;

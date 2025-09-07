@@ -1,9 +1,8 @@
 package ludo.mentis.aciem.commons.web;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
-import jakarta.servlet.http.HttpServletRequest;
 
 
 /**
@@ -23,7 +22,6 @@ public class WebUtils {
      * Private constructor to prevent instantiation
      */
     private WebUtils() {
-        throw new IllegalStateException("Utility class");
     }
 
     /**

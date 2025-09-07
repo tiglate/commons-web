@@ -6,7 +6,6 @@ import java.util.function.Function;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-
 /**
  * Utility class providing custom collectors for use with Java Streams.
  * <p>
@@ -18,7 +17,8 @@ import java.util.stream.Collectors;
  * to prevent instantiation.
  * </p>
  */
-public class CustomCollectors {
+public final class CustomCollectors {
+    private static final String DUPLICATE_KEY_MESSAGE = "Duplicate key detected";
 
     /**
      * Private constructor to prevent instantiation.
@@ -27,20 +27,24 @@ public class CustomCollectors {
         throw new IllegalStateException("Utility class");
     }
 
-	/**
-     * Provide a Collector for collecting values from a stream into a LinkedHashMap,
-     * thus keeping the order.
-     * @param keyMapper a mapping function to produce keys
+    /**
+     * Provides a Collector that collects elements into a LinkedHashMap preserving insertion order.
+     *
+     * @param keyMapper   a mapping function to produce keys
      * @param valueMapper a mapping function to produce values
-     * @return a Collector to collect values in a sorted map
+     * @return a Collector that collects values into an insertion-order map
+     * @throws IllegalStateException if duplicate keys are encountered
      */
-    public static <T, K, U> Collector<T, ?, Map<K, U>> toSortedMap(
+    public static <T, K, U> Collector<T, ?, Map<K, U>> toLinkedHashMap(
             Function<? super T, ? extends K> keyMapper,
             Function<? super T, ? extends U> valueMapper) {
-        return Collectors.toMap(keyMapper,
+        return Collectors.toMap(
+                keyMapper,
                 valueMapper,
-                (u, v) -> { throw new IllegalStateException(String.format("Duplicate key %s", u)); },
-                LinkedHashMap::new);
+                (u, v) -> {
+                    throw new IllegalStateException(DUPLICATE_KEY_MESSAGE);
+                },
+                LinkedHashMap::new
+        );
     }
-
 }

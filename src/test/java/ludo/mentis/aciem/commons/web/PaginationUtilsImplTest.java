@@ -18,26 +18,30 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-class PaginationUtilsTest {
+class PaginationUtilsImplTest {
 
     @Mock
     private HttpServletRequest request;
+
+    // Introduced: use interface for easy mocking/DI and instance-based testing
+    private PaginationUtils utils;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
+        utils = new PaginationUtilsImpl();
     }
 
     @Test
     void testGetPaginationModel_NullPage() {
-        assertNull(PaginationUtils.getPaginationModel(null));
+        assertNull(utils.getPaginationModel(null));
     }
 
     @Test
     void testGetPaginationModel_EmptyPage() {
         Page<String> emptyPage = Page.empty();
-        PaginationModel paginationModel = PaginationUtils.getPaginationModel(emptyPage);
+        PaginationModel paginationModel = utils.getPaginationModel(emptyPage);
         assertNull(paginationModel);
     }
 
@@ -47,7 +51,7 @@ class PaginationUtilsTest {
         when(request.getParameter("sort")).thenReturn(null);
         when(request.getParameter("filter")).thenReturn(null);
 
-        PaginationModel paginationModel = PaginationUtils.getPaginationModel(singlePage);
+        PaginationModel paginationModel = utils.getPaginationModel(singlePage);
 
         assertNotNull(paginationModel);
         assertEquals(3, paginationModel.getSteps().size());
@@ -68,7 +72,7 @@ class PaginationUtilsTest {
         when(request.getParameter("sort")).thenReturn(null);
         when(request.getParameter("filter")).thenReturn(null);
 
-        PaginationModel paginationModel = PaginationUtils.getPaginationModel(multiplePages);
+        PaginationModel paginationModel = utils.getPaginationModel(multiplePages);
 
         assertNotNull(paginationModel);
         assertEquals(5, paginationModel.getSteps().size());
@@ -89,7 +93,7 @@ class PaginationUtilsTest {
         when(request.getParameter("sort")).thenReturn("name,asc");
         when(request.getParameter("filter")).thenReturn("active");
 
-        String stepUrl = PaginationUtils.getStepUrl(page, 1);
+        String stepUrl = utils.getStepUrl(page, 1);
         assertEquals("?page=1&size=3&sort=name,asc&filter=active", stepUrl);
     }
 
@@ -99,7 +103,7 @@ class PaginationUtilsTest {
         when(request.getParameter("sort")).thenReturn(null);
         when(request.getParameter("filter")).thenReturn(null);
 
-        String stepUrl = PaginationUtils.getStepUrl(page, 1);
+        String stepUrl = utils.getStepUrl(page, 1);
         assertEquals("?page=1&size=3", stepUrl);
     }
 }

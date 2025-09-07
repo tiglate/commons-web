@@ -24,15 +24,14 @@ public class FlashMessages {
      * Private constructor to prevent instantiation
      */
     private FlashMessages() {
-        throw new IllegalStateException("Utility class");
     }
 
     /**
      * Add a referenced warning message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param referencedBy the entity name that references the entity
-     * @param id the id of the entity
+     * @param referencedBy       the entity name that references the entity
+     * @param id                 the id of the entity
      */
     public static void referencedWarning(RedirectAttributes redirectAttributes, String referencedBy, Integer id) {
         redirectAttributes.addFlashAttribute(MSG_ERROR, String.format("This entity is still referenced by %s %d via field Software.", referencedBy, id));
@@ -42,7 +41,7 @@ public class FlashMessages {
      * Add a success message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param entityName the entity name
+     * @param entityName         the entity name
      */
     public static void createSuccess(RedirectAttributes redirectAttributes, String entityName) {
         redirectAttributes.addFlashAttribute(MSG_SUCCESS, String.format("%s was created successfully", entityName));
@@ -52,7 +51,7 @@ public class FlashMessages {
      * Add a success message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param entityName the entity name
+     * @param entityName         the entity name
      */
     public static void updateSuccess(RedirectAttributes redirectAttributes, String entityName) {
         redirectAttributes.addFlashAttribute(MSG_SUCCESS, String.format("%s was updated successfully.", entityName));
@@ -62,7 +61,7 @@ public class FlashMessages {
      * Add a success message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param entityName the entity name
+     * @param entityName         the entity name
      */
     public static void deleteSuccess(RedirectAttributes redirectAttributes, String entityName) {
         redirectAttributes.addFlashAttribute(MSG_SUCCESS, String.format("%s was removed successfully.", entityName));
@@ -72,7 +71,7 @@ public class FlashMessages {
      * Add an error message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param exception the exception
+     * @param exception          the exception
      */
     public static void error(RedirectAttributes redirectAttributes, Exception exception) {
         error(redirectAttributes, exception.getMessage());
@@ -82,7 +81,7 @@ public class FlashMessages {
      * Add an error message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param errorMessage the error message
+     * @param errorMessage       the error message
      */
     public static void error(RedirectAttributes redirectAttributes, String errorMessage) {
         redirectAttributes.addFlashAttribute(MSG_ERROR, errorMessage);
@@ -92,7 +91,7 @@ public class FlashMessages {
      * Add an info message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param infoMessage the info message
+     * @param infoMessage        the info message
      */
     public static void info(RedirectAttributes redirectAttributes, String infoMessage) {
         redirectAttributes.addFlashAttribute(MSG_INFO, infoMessage);
@@ -102,7 +101,7 @@ public class FlashMessages {
      * Add a success message to the redirect attributes
      *
      * @param redirectAttributes the redirect attributes
-     * @param successMessage the success message
+     * @param successMessage     the success message
      */
     public static void success(RedirectAttributes redirectAttributes, String successMessage) {
         redirectAttributes.addFlashAttribute(MSG_SUCCESS, successMessage);

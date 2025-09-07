@@ -1,5 +1,6 @@
 package ludo.mentis.aciem.commons.web;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
@@ -9,13 +10,12 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.LocaleResolver;
 
-import jakarta.servlet.http.HttpServletRequest;
 import java.util.Locale;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-class GlobalizationUtilsTest {
+class GlobalizationUtilsImplTest {
 
     @Mock
     private MessageSource messageSource;
@@ -26,12 +26,13 @@ class GlobalizationUtilsTest {
     @Mock
     private HttpServletRequest request;
 
+    private GlobalizationUtilsImpl globalizationUtils;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
         RequestContextHolder.setRequestAttributes(new ServletRequestAttributes(request));
-        //noinspection InstantiationOfUtilityClass
-        new GlobalizationUtils(messageSource, localeResolver);
+        globalizationUtils = new GlobalizationUtilsImpl(messageSource, localeResolver);
     }
 
     @Test
@@ -40,7 +41,7 @@ class GlobalizationUtilsTest {
         when(messageSource.getMessage(eq("test.code"), any(), eq("test.code"), eq(Locale.ENGLISH)))
                 .thenReturn("Test Message with args: arg1, arg2");
 
-        String message = GlobalizationUtils.getMessage("test.code", "arg1", "arg2");
+        String message = globalizationUtils.getMessage("test.code", "arg1", "arg2");
         assertEquals("Test Message with args: arg1, arg2", message);
     }
 
@@ -50,7 +51,7 @@ class GlobalizationUtilsTest {
         when(messageSource.getMessage(eq("test.code"), any(), eq("test.code"), eq(Locale.ENGLISH)))
                 .thenReturn("Test Message");
 
-        String message = GlobalizationUtils.getMessage("test.code");
+        String message = globalizationUtils.getMessage("test.code");
         assertEquals("Test Message", message);
     }
 
@@ -60,7 +61,7 @@ class GlobalizationUtilsTest {
         when(messageSource.getMessage(eq("non.existent.code"), any(), eq("non.existent.code"), eq(Locale.ENGLISH)))
                 .thenReturn("non.existent.code");
 
-        String message = GlobalizationUtils.getMessage("non.existent.code");
+        String message = globalizationUtils.getMessage("non.existent.code");
         assertEquals("non.existent.code", message);
     }
 }

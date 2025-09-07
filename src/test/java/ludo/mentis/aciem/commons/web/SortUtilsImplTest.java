@@ -15,16 +15,16 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.verify;
 
-class SortUtilsTest {
+class SortUtilsImplTest {
 
-    private SortUtils sortUtils;
+    private SortUtilsImpl sortUtils;
 
     private Model model;
 
     @BeforeEach
     void setUp() {
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUri(URI.create("/test"));
-        sortUtils = new SortUtils(uriBuilder);
+        sortUtils = new SortUtilsImpl(uriBuilder);
         model = mock(Model.class);
     }
 

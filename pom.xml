@@ -10,7 +10,7 @@
     </parent>
     <groupId>ludo.mentis.aciem</groupId>
     <artifactId>commons-web</artifactId>
-    <version>1.0.0</version>
+    <version>2.0.0</version>
     <name>commons-web</name>
     <description>commons-web</description>
     <packaging>jar</packaging>

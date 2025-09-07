@@ -17,7 +17,7 @@ class CustomCollectorsTest {
     void testToSortedMap() {
         var data = List.of("apple", "banana", "cherry");
 
-        var result = data.stream().collect(CustomCollectors.toSortedMap(Function.identity(), String::length));
+        var result = data.stream().collect(CustomCollectors.toLinkedHashMap(Function.identity(), String::length));
 
         assertNotNull(result);
         assertEquals(3, result.size());
@@ -31,7 +31,7 @@ class CustomCollectorsTest {
         List<String> data = List.of("apple", "apple");
 
         var exception = assertThrows(IllegalStateException.class,
-                () -> data.stream().collect(CustomCollectors.toSortedMap(s -> s.substring(0, 3), String::length)));
+                () -> data.stream().collect(CustomCollectors.toLinkedHashMap(s -> s.substring(0, 3), String::length)));
 
         assertTrue(exception.getMessage().contains("Duplicate key"));
     }
@@ -40,7 +40,7 @@ class CustomCollectorsTest {
     void testToSortedMapOrder() {
         var data = List.of("banana", "apple", "cherry");
 
-        var result = data.stream().collect(CustomCollectors.toSortedMap(Function.identity(), String::length));
+        var result = data.stream().collect(CustomCollectors.toLinkedHashMap(Function.identity(), String::length));
 
         assertNotNull(result);
         assertEquals(3, result.size());
