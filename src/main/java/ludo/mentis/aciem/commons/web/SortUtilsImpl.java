@@ -1,5 +1,6 @@
 package ludo.mentis.aciem.commons.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
@@ -29,6 +30,7 @@ public class SortUtilsImpl implements SortUtils {
      *
      * @param uriComponentsBuilder the UriBuilder to use
      */
+    @Autowired
     public SortUtilsImpl(UriBuilder uriComponentsBuilder) {
         this.uriBuilder = uriComponentsBuilder;
     }
