@@ -63,7 +63,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <!--suppress UnresolvedMavenProperty -->
-                    <argLine>-javaagent:${org.mockito:mockito-core:jar} -Xshare:off</argLine>
+                    <argLine>@{argLine} -javaagent:${org.mockito:mockito-core:jar} -Xshare:off</argLine>
                 </configuration>
             </plugin>
         </plugins>
